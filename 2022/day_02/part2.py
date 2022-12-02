@@ -5,28 +5,29 @@ if len(sys.argv) != 2:
 
 fileName = sys.argv[1]
 
+results = {
+    "AX": 3,
+    "AY": 4,
+    "AZ": 8,
+    "BX": 1,
+    "BY": 5,
+    "BZ": 9,
+    "CX": 2,
+    "CY": 6,
+    "CZ": 7
+}
+
 def loadInput(fileName):
     with open(fileName) as file:
         return file.readlines()
 
-def splitFileIntoElves(file):
-    elves = []
-    currentElf = 0
-    for line in file:
-        line = line.rstrip()
-        if line == "":
-            elves.append(currentElf)
-            currentElf = 0
-        else:
-            currentElf += int(line)
-    elves.append(currentElf)
-    return elves
+def calculateScore(opponent, you):
+    return results[opponent+you]
 
-def findTopElvesSum(elves, number):
-    elves.sort(reverse=True)
-    return sum(elves[0:number])
+file = loadInput(fileName)
+score = 0
+for game in file:
+    gameParts = game.rstrip().split(" ")
+    score += calculateScore(gameParts[0], gameParts[1])
+print(score)
 
-file = loadInput(fileName);
-elves = splitFileIntoElves(file)
-topElvesSum = findTopElvesSum(elves, 3)
-print(topElvesSum)
