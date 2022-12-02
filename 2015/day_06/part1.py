@@ -1,5 +1,4 @@
 import sys
-import re
 
 if len(sys.argv) != 2:
     sys.exit("Please enter the file name for the input file.")
