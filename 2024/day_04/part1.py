@@ -1,8 +1,6 @@
 import sys
 import re
 
-regexPattern = r'mul\(\d{1,3},\d{1,3}\)'
-
 if len(sys.argv) != 2:
     sys.exit("Please enter the file name for the input file.")
 
@@ -69,20 +67,12 @@ def printGrid(grid):
 
 file = loadInput(fileName)
 grid = getGrid(file)
-# printGrid(grid)
-# print('')
 count = findMatchesInGrid(grid)
 newGrid = rotateGrid90(grid)
-# printGrid(newGrid)
-# print('')
 count += findMatchesInGrid(newGrid)
 newGrid = rotateGrid45(grid)
-# printGrid(newGrid)
-# print('')
 count += findMatchesInGrid(newGrid)
 newGrid = reverseGrid(grid)
 newGrid = rotateGrid45(newGrid)
-# printGrid(newGrid)
-# print('')
 count += findMatchesInGrid(newGrid)
 print(count)
